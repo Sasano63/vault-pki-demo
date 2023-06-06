@@ -10,7 +10,7 @@ openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "
 vault write -format=json pki_int/sign/example-role csr="$(cat example.csr)" ttl="24h"
 
 # create CSR with disallowed common name
-openssl req -nodes -newkey rsa:2048 -keyout example-.key -out example-cn.csr -subj "/C=DE/ST=Berlin/L=Berlin/O=Global Security/OU=IT Department/CN=example.com"
+openssl req -nodes -newkey rsa:2048 -keyout example-cn.key -out example-cn.csr -subj "/C=DE/ST=Berlin/L=Berlin/O=Global Security/OU=IT Department/CN=example.com"
 
 # try signing with disallowed common name
 vault write -format=json pki_int/sign/example-role csr="$(cat example-cn.csr)" ttl="24h"
